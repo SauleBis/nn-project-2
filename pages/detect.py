@@ -11,7 +11,7 @@ from torchvision import transforms as T
 def get_model(conf):
     model = torch.hub.load(
         # будем работать с локальной моделью в текущей папке
-        repo_or_dir="./yolov5/",
+        repo_or_dir="nn-project-2/yolov5/",
         model="custom",
         path="best.pt",
         source="local",
@@ -27,6 +27,8 @@ with st.sidebar:
 
 with st.spinner():
     model = get_model(t)
+
+
 
 st.title("Детекция объектов с YOLOv5")
 uploaded_file = st.file_uploader("Upload image", type=["jpeg", "jpg", "png"])
