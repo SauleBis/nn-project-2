@@ -6,16 +6,12 @@ from io import BytesIO
 from torchvision import transforms as T
 
 
+st.title("Детекция объектов с YOLOv5")
+uploaded_file = st.file_uploader("Upload image", type=["jpeg", "jpg", "png"])
 
 @st.cache_resource
 def get_model(conf):
-    model = torch.hub.load(
-        # будем работать с локальной моделью в текущей папке
-        repo_or_dir="nn-project-2/yolov5/",
-        model="custom",
-        path="best.pt",
-        source="local",
-    )
+    model = torch.hub.load(r'yolov5', 'custom', path=r'best.pt', source='local')
     model.eval()
     model.conf = conf
     print("Model loaded")
@@ -28,10 +24,6 @@ with st.sidebar:
 with st.spinner():
     model = get_model(t)
 
-
-
-st.title("Детекция объектов с YOLOv5")
-uploaded_file = st.file_uploader("Upload image", type=["jpeg", "jpg", "png"])
 results = None
 lcol, rcol = st.columns(2)
 with lcol:
