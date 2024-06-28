@@ -11,7 +11,7 @@ uploaded_file = st.file_uploader("Upload image", type=["jpeg", "jpg", "png"])
 
 @st.cache_resource
 def get_model(conf):
-    model = torch.hub.load(r'yolov5', 'custom', path=r'best.pt', source='local')
+    model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt', source='local')
     model.eval()
     model.conf = conf
     print("Model loaded")
